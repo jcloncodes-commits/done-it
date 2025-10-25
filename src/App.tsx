@@ -6,6 +6,8 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  console.log("app v.1")
+
   return (
     <>
       <div>
