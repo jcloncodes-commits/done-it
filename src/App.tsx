@@ -11,7 +11,7 @@ const App: React.FC = () => {
  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if(todo){
-      setTodos([...todos, { id: Date.now(), todo: todo, isDone: false}])
+      setTodos([...todos, { id: Date.now(), todo: todo, isOngoing: false, isDone: false}])
       setTodo("")
     } 
  }

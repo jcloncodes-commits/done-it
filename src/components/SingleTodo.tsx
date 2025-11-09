@@ -15,12 +15,11 @@ const SingleTodo:React.FC<Props> = ({v, todos, setTodos}) => {
     const [ edit, setEdit ] = useState<boolean>(false)
     const [ todosEdit, setTodosEdit] = useState<string>(v.todo) 
     const [isDragging, setDragging] = useState<boolean>(false)
-    const [preview, setPreview] = useState<HTMLElement | null>(null)
-
+    const [preview, setPreview] = useState<HTMLElement | null>(null) 
     const handleDone = (id: number) => {
         setTodos(
             todos.map((todo) =>
-                 todo.id === id ? {...todo, isDone: !todo.isDone } : todo))
+                 todo.id === id ? {...todo, isOngoing: false, isDone: !todo.isDone } : todo))
     }
     const handleDelete = (id: number) => {
         setTodos(
@@ -32,7 +31,7 @@ const SingleTodo:React.FC<Props> = ({v, todos, setTodos}) => {
         e.preventDefault()
         setTodos(
             todos.map((todo) =>
-            todo.id === id ? {...todo, todo: todosEdit, isDone: false} : todo )
+            todo.id === id ? {...todo, todo: todosEdit, isOngoing: false, isDone: false} : todo )
         );
         setEdit(false);
     } 

@@ -13,11 +13,13 @@ const TodosList:React.FC<Props> = ({todos, setTodos}) => {
 
     const activeRef = useRef<HTMLDivElement>(null);
     const completedRef = useRef<HTMLDivElement>(null);
+    const ongoingRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
     const activeEl = activeRef.current;
+    const ongoingEl = ongoingRef.current;
     const completedEl = completedRef.current;
-    if (!activeEl || !completedEl) return;
+    if (!activeEl || !completedEl || !ongoingEl) return;
 
     // Active list drop target
     const cleanupActive = dropTargetForElements({
@@ -29,7 +31,21 @@ const TodosList:React.FC<Props> = ({todos, setTodos}) => {
 
         // When dropped on Active list → mark as not done
         setTodos((prev) =>
-          prev.map((t) => (t.id === id ? { ...t, isDone: false } : t))
+          prev.map((t) => (t.id === id ? { ...t, isOngoing: false, isDone: false } : t))
+        );
+      },
+    });
+    // Ongoing list drop target
+    const cleanupOngoing = dropTargetForElements({
+      element: ongoingEl,
+      getData: () => ({ type: "ongoing-list" }),
+      onDrop({ source }) {
+        const data = source.data as Record<string, unknown>;
+        const id = data.id as number;
+
+        // When dropped on Active list → mark as not done
+        setTodos((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, isOngoing: true, isDone: false } : t))
         );
       },
     });
@@ -44,7 +60,7 @@ const TodosList:React.FC<Props> = ({todos, setTodos}) => {
 
         // When dropped on Completed list → mark as done
         setTodos((prev) =>
-          prev.map((t) => (t.id === id ? { ...t, isDone: true } : t))
+          prev.map((t) => (t.id === id ? { ...t, isOngoing: false, isDone: true } : t))
         );
       },
     });
@@ -52,6 +68,7 @@ const TodosList:React.FC<Props> = ({todos, setTodos}) => {
     // Cleanup on unmount
     return () => {
       cleanupActive();
+      cleanupOngoing();
       cleanupCompleted();
     };
   }, [setTodos]);
@@ -60,9 +77,17 @@ const TodosList:React.FC<Props> = ({todos, setTodos}) => {
         <div className="container">
             <div ref={activeRef} className="todo">
                 <span className="todo__heading">Active tasks</span>
-                {todos.filter((t) => !t.isDone)
+                {todos.filter((t) => !t.isDone && !t.isOngoing)
                 .map((v) => (
                     <SingleTodo v={v} key={v.id} todos={todos} setTodos={setTodos} />
+                ))}
+            </div>
+            <div ref={ongoingRef} className="todo ongoing ">
+                <span className="todo__heading">Ongoing tasks</span> 
+                {todos
+                    .filter((t) => t.isOngoing)
+                    .map((v) => (
+                        <SingleTodo v={v} key={v.id} todos={todos} setTodos={setTodos} />
                 ))}
             </div>
             <div ref={completedRef} className="todo remove ">
