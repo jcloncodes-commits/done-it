@@ -10,14 +10,19 @@ interface Props {
 const InputField: React.FC<Props> = ({todo, setTodo, handleSubmit}) => {
   const inputRef = useRef<HTMLInputElement>(null)
   return (
-    <form className="input" 
-      onSubmit={(e)=> {
-          handleSubmit(e);
-          inputRef.current?.blur();
-        }}>
-        <input ref={inputRef} type="input" placeholder="Enter a task" value={todo} onChange={(e)=>setTodo(e.target.value)} className="input__box"/>
-        <button type="submit" className="input__submit">Submit</button>
-    </form>
+    <div className='input__container'>
+      <div className='input__content'>
+        <p>Add habit</p>
+        <form className="input" 
+          onSubmit={(e)=> {
+              handleSubmit(e);
+              inputRef.current?.blur();
+            }}>
+            <input ref={inputRef} type="input" placeholder="Enter a task" value={todo} onChange={(e)=>setTodo(e.target.value)} className="input__box"/>
+            <button type="submit" className="input__submit">Submit</button>
+        </form>
+      </div>
+    </div>
   )
 }
 

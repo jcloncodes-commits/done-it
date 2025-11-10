@@ -76,14 +76,14 @@ const TodosList:React.FC<Props> = ({todos, setTodos}) => {
     return (
         <div className="container">
             <div ref={activeRef} className="todo">
-                <span className="todo__heading">Active tasks</span>
+                <span className="todo__heading">Today’s Habit</span>
                 {todos.filter((t) => !t.isDone && !t.isOngoing)
                 .map((v) => (
                     <SingleTodo v={v} key={v.id} todos={todos} setTodos={setTodos} />
                 ))}
             </div>
             <div ref={ongoingRef} className="todo ongoing ">
-                <span className="todo__heading">Ongoing tasks</span> 
+                <span className="todo__heading">Today’s Ongoing</span> 
                 {todos
                     .filter((t) => t.isOngoing)
                     .map((v) => (
@@ -91,7 +91,7 @@ const TodosList:React.FC<Props> = ({todos, setTodos}) => {
                 ))}
             </div>
             <div ref={completedRef} className="todo remove ">
-                <span className="todo__heading">Completed tasks</span> 
+                <span className="todo__heading">Habit Completed</span> 
                 {todos
                     .filter((t) => t.isDone)
                     .map((v) => (

@@ -1,6 +1,15 @@
+.input__content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:12px
+}
+
 .input {
     position: relative;
-    width: 90%;
+    display: flex;
+    gap: 12px;
+    width: 272px;
 }
 
 .input__box{
@@ -8,7 +17,8 @@
     border-radius: 100px;
     border: none;
     transition: 0.2s;
-    padding: 16px 16px;
+    padding: 0px 16px;
+    height: 40px;
 }
 
 .input__box:focus{
@@ -17,13 +27,11 @@
 
 .input__submit {
     background: #571fe5;
+    height: 40px;
     color: #fff;
     border: none;
     border-radius: 4px;
-    padding: 8px 16px ;
-    position: absolute;
-    top: 8px;
-    right: 0;
+    padding: 8px 16px ; 
 }
 
 .container{
@@ -41,7 +49,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px; 
-    background-color: #571fe5;
+    /* background-color: #571fe5; */
     padding: 24px;
     border-radius: 8px;
 }
@@ -52,7 +60,7 @@
     border-radius: 8px;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #f1f0f0;
+    background-color: #fff;
     padding: 12px 12px;
     transition: 0.2s;
 }
@@ -77,6 +85,6 @@
 }
 
 .remove{
-    background-color: #a01c1c;
+    /* background-color: #a01c1c; */
 }
  

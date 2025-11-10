@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+ 
+
+h1, p{
+    padding: 0;
+    margin: 0;
+    line-height: 4px * 120px;
+}
+
 
 
 .App {
@@ -7,9 +15,17 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #fafafa;
-    font-family: "Inter", sans-serif;
+    gap:24px;
+    /* align-items: center; */
+    background-color: #F5F5F5;
+    font-family: "Inter", sans-serif; 
+}
+
+
+.brand{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .heading{

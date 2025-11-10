@@ -18,7 +18,10 @@ const App: React.FC = () => {
  
   return (
     <div className="App">
-      <span className="heading">Done It</span>
+      <div className="brand">
+        <h1><span style={{textDecoration:"line-through"}}>Im</span>possible</h1>
+        <p>Breakdown your goal to tiny habits that lead to compound effects</p>
+      </div>
       <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit}/>
       <TodosList todos={todos} setTodos={setTodos}/>
     </div>
